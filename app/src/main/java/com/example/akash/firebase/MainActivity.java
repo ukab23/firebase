@@ -19,21 +19,22 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth; //-------------------------Added for Authentication using Firebase-----------------//
 
     private Button buttonRegister;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignIn;
-    private ProgressDialog progressDialog;
+    private ProgressDialog progressDialog; //----------------------Added for progress dialog------------------------------//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();  //--------------------This will create instance of firebase auth----------//
 
+        //------------This method will check for current user, if user is loged in it will directly show users profile--------//
         if(firebaseAuth.getCurrentUser() !=null){
             //Profile
             finish();
@@ -51,21 +52,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewSignIn.setOnClickListener(this);
 
     }
-
+    // ------------------------------This method will regester the new user in firebase------------------------------//
     private void regesterUser(){
 
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
-            //email is empty
+            //Check if email is empty, and give instruction
             Toast.makeText(this,"Email address can not be empty", Toast.LENGTH_SHORT).show();
             //stop function from executing further
             return;
         }
 
         if(TextUtils.isEmpty(password)){
-            //password is empty
+            //Check if password is empty, and give instruction
             Toast.makeText(this,"Password can not be empty", Toast.LENGTH_SHORT).show();
             //stop function from executing further
             return;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog.show();
         // Toast.makeText(this,"Regestring",Toast.LENGTH_SHORT).show();
 
+
+        //------------------This method will create new user in firebase using email and id---------
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

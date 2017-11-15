@@ -22,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private EditText editTextName;
     private EditText editTextAddress;
     private Button buttonSave;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference; //----------This will reference for firebase database
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         editTextAddress = (EditText) findViewById(R.id.editTextAddress);
         buttonSave = (Button) findViewById(R.id.buttonSave);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();     //---------- This will create instance for database
         firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser() == null){
@@ -48,14 +48,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonLogOut.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
     }
-
+        // This method saves user information into firebase database
     private void saveUserInformation(){
         String name = editTextName.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
 
-        userInformation userinformation = new userInformation(name,address);
+        userInformation userinformation = new userInformation(name,address);  //This will pass name and address to another class userInformatio
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        databaseReference.child(user.getUid()).setValue(userinformation);
+        databaseReference.child(user.getUid()).setValue(userinformation);   //This will get the id of loged in user and saves that information in his account
         Toast.makeText(getApplicationContext(),"Information Saved",Toast.LENGTH_SHORT).show();
         editTextName.setText("");
         editTextAddress.setText("");
