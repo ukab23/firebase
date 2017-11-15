@@ -23,6 +23,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <EditText
+        android:layout_margin="15dp"
+        android:textAlignment="center"
+        android:id="@+id/editTextName"
+        android:hint="Enter Your Full Name"
+        android:inputType="text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="184dp" />
+
+    <EditText
+        android:layout_margin="15dp"
+        android:textAlignment="center"
+        android:id="@+id/editTextAddress"
+        android:hint="Enter Your Address"
+        android:inputType="text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="232dp" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_margin="15dp"
+        android:ems="15"
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="184dp"/>
+
+
     <Button
         android:id="@+id/buttonLogOut"
         android:layout_width="wrap_content"
